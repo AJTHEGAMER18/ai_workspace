@@ -3,31 +3,263 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Personal Landing Page</title>
+    <title>AJ Mercer — Creative Developer</title>
+    <meta name="description" content="Personal landing page of AJ Mercer — creative developer crafting memorable web experiences.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Albert+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,500;12..96,700;12..96,800&family=Fragment+Mono&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+    <script>
+        /* Apply theme before first paint to avoid flash */
+        (function () {
+            const saved = localStorage.getItem('theme');
+            const system = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+            document.documentElement.setAttribute('data-theme', saved || system);
+        })();
+    </script>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>Welcome to My Landing Page</h1>
-            <button id="darkModeToggle" aria-label="Toggle dark mode">🌙</button>
-        </header>
-        <main>
-            <section class="intro">
-                <img src="https://avatars.githubusercontent.com/u/223556219?v=4" alt="Profile" class="profile-pic">
-                <h2>Your Name</h2>
-                <p>Short bio goes here. Passionate developer, designer, or whatever you want to showcase!</p>
-            </section>
-            <section class="links">
-                <a href="#" class="btn">Portfolio</a>
-                <a href="#" class="btn">Blog</a>
-                <a href="#" class="btn">Contact</a>
-            </section>
-        </main>
-        <footer>
-            <p>&copy; 2026 Your Name. All rights reserved.</p>
-        </footer>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <!-- ======================= NAV ======================= -->
+    <header class="nav" id="top">
+        <a href="#top" class="nav__logo" aria-label="Home">AJ<span class="nav__logo-dot">◆</span></a>
+
+        <nav class="nav__links" aria-label="Primary">
+            <a href="#about" class="nav__link" data-section="about"><sup>01</sup> About</a>
+            <a href="#skills" class="nav__link" data-section="skills"><sup>02</sup> Skills</a>
+            <a href="#work" class="nav__link" data-section="work"><sup>03</sup> Work</a>
+            <a href="#contact" class="nav__link" data-section="contact"><sup>04</sup> Contact</a>
+        </nav>
+
+        <div class="nav__actions">
+            <button class="theme-toggle" id="themeToggle" aria-label="Toggle color theme" title="Toggle theme">
+                <span class="theme-toggle__track" aria-hidden="true">
+                    <svg class="theme-toggle__icon theme-toggle__icon--sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.6 4.6l1.8 1.8M17.6 17.6l1.8 1.8M4.6 19.4l1.8-1.8M17.6 6.4l1.8-1.8"/></svg>
+                    <svg class="theme-toggle__icon theme-toggle__icon--moon" viewBox="0 0 24 24" fill="currentColor"><path d="M20.4 14.6A8.6 8.6 0 0 1 9.4 3.6a8.6 8.6 0 1 0 11 11Z"/></svg>
+                </span>
+            </button>
+
+            <button class="nav__burger" id="navBurger" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+                <span></span><span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile overlay menu -->
+    <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+        <nav class="mobile-menu__links" aria-label="Mobile">
+            <a href="#about" class="mobile-menu__link"><sup>01</sup> About</a>
+            <a href="#skills" class="mobile-menu__link"><sup>02</sup> Skills</a>
+            <a href="#work" class="mobile-menu__link"><sup>03</sup> Work</a>
+            <a href="#contact" class="mobile-menu__link"><sup>04</sup> Contact</a>
+        </nav>
+        <p class="mobile-menu__foot">Available for freelance — 2026</p>
     </div>
+
+    <main id="main">
+        <!-- ======================= HERO ======================= -->
+        <section class="hero">
+            <div class="hero__eyebrow reveal">
+                <span class="status-dot" aria-hidden="true"></span>
+                <span>Available for new projects</span>
+                <span class="hero__eyebrow-sep" aria-hidden="true">/</span>
+                <span class="mono">Est. 2019</span>
+            </div>
+
+            <h1 class="hero__title">
+                <span class="hero__line reveal" style="--d:.05s">Hi, I'm <em class="serif">AJ</em> —</span>
+                <span class="hero__line reveal" style="--d:.15s">I build <em class="serif accent">memorable</em></span>
+                <span class="hero__line reveal" style="--d:.25s">websites.</span>
+            </h1>
+
+            <div class="hero__bottom">
+                <p class="hero__intro reveal" style="--d:.35s">
+                    Creative developer &amp; interface designer based in Toronto.
+                    I turn ambitious ideas into fast, tactile, pixel-obsessed
+                    digital products — no templates, no filler.
+                </p>
+
+                <div class="hero__cta reveal" style="--d:.45s">
+                    <a href="#work" class="btn btn--fill magnetic">See selected work</a>
+                    <a href="#contact" class="btn btn--line magnetic">Get in touch</a>
+                </div>
+            </div>
+
+            <!-- Rotating badge -->
+            <div class="hero__badge" aria-hidden="true">
+                <svg viewBox="0 0 120 120" class="hero__badge-ring">
+                    <defs><path id="circlePath" d="M60,60 m-44,0 a44,44 0 1,1 88,0 a44,44 0 1,1 -88,0"/></defs>
+                    <text><textPath href="#circlePath">CREATIVE DEVELOPER ✦ AVAILABLE 2026 ✦ </textPath></text>
+                </svg>
+                <span class="hero__badge-center">↓</span>
+            </div>
+        </section>
+
+        <!-- ======================= MARQUEE ======================= -->
+        <div class="marquee" aria-hidden="true">
+            <div class="marquee__track">
+                <span>Web Design <i>✦</i> Development <i>✦</i> Motion <i>✦</i> Design Systems <i>✦</i> Creative Code <i>✦</i> </span>
+                <span>Web Design <i>✦</i> Development <i>✦</i> Motion <i>✦</i> Design Systems <i>✦</i> Creative Code <i>✦</i> </span>
+            </div>
+        </div>
+        <!-- ======================= ABOUT ======================= -->
+        <section class="section about" id="about">
+            <div class="section__head reveal">
+                <span class="section__num mono">(01)</span>
+                <h2 class="section__title">About</h2>
+            </div>
+
+            <div class="about__grid">
+                <figure class="about__media reveal">
+                    <img src="https://avatars.githubusercontent.com/u/223556219?v=4" alt="Portrait of AJ Mercer" loading="lazy">
+                    <figcaption class="mono">Fig. 01 — The human behind the pixels</figcaption>
+                </figure>
+
+                <div class="about__body">
+                    <p class="about__lead reveal">
+                        I'm a <em class="serif">full-stack developer</em> with a designer's eye
+                        and an unreasonable love for the details most people never notice.
+                    </p>
+                    <p class="reveal" style="--d:.1s">
+                        For 7+ years I've partnered with startups and studios to ship
+                        interfaces that feel alive — from design systems used by thousands
+                        to one-page sites that punch way above their weight. My stack of
+                        choice is lean: semantic HTML, modern CSS, and vanilla JavaScript
+                        whenever it gets the job done.
+                    </p>
+                    <p class="reveal" style="--d:.2s">
+                        When I'm not online, you'll find me shooting street photography,
+                        over-engineering my coffee setup, or losing at chess.
+                    </p>
+
+                    <ul class="about__stats">
+                        <li class="reveal" style="--d:.15s"><strong>7+</strong><span class="mono">Years experience</span></li>
+                        <li class="reveal" style="--d:.25s"><strong>40+</strong><span class="mono">Projects shipped</span></li>
+                        <li class="reveal" style="--d:.35s"><strong>12</strong><span class="mono">Happy clients</span></li>
+                        <li class="reveal" style="--d:.45s"><strong>∞</strong><span class="mono">Cups of coffee</span></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- ======================= SKILLS ======================= -->
+        <section class="section skills" id="skills">
+            <div class="section__head reveal">
+                <span class="section__num mono">(02)</span>
+                <h2 class="section__title">Capabilities</h2>
+            </div>
+
+            <ul class="skills__grid">
+                <li class="skill-card reveal">
+                    <span class="skill-card__num mono">01</span>
+                    <h3>Frontend</h3>
+                    <p>Accessible, semantic interfaces with buttery-smooth interactions. Performance budgets are non-negotiable.</p>
+                    <div class="skill-card__tags mono"><span>HTML/CSS</span><span>JavaScript</span><span>React</span><span>Vue</span></div>
+                </li>
+                <li class="skill-card reveal" style="--d:.08s">
+                    <span class="skill-card__num mono">02</span>
+                    <h3>Backend</h3>
+                    <p>Robust APIs and data layers that stay boring on purpose — reliable, observable, and well-documented.</p>
+                    <div class="skill-card__tags mono"><span>Node</span><span>Python</span><span>PostgreSQL</span><span>Redis</span></div>
+                </li>
+                <li class="skill-card reveal" style="--d:.16s">
+                    <span class="skill-card__num mono">03</span>
+                    <h3>Motion &amp; 3D</h3>
+                    <p>Interface choreography that guides attention instead of stealing it. Micro-interactions with intent.</p>
+                    <div class="skill-card__tags mono"><span>GSAP</span><span>WebGL</span><span>Three.js</span><span>Lottie</span></div>
+                </li>
+                <li class="skill-card reveal" style="--d:.24s">
+                    <span class="skill-card__num mono">04</span>
+                    <h3>Design Systems</h3>
+                    <p>Tokens, components, and documentation that keep growing teams shipping consistently at speed.</p>
+                    <div class="skill-card__tags mono"><span>Figma</span><span>Tokens</span><span>Storybook</span><span>A11y</span></div>
+                </li>
+            </ul>
+        </section>
+        <!-- ======================= WORK ======================= -->
+        <section class="section work" id="work">
+            <div class="section__head reveal">
+                <span class="section__num mono">(03)</span>
+                <h2 class="section__title">Selected Work</h2>
+            </div>
+
+            <ul class="work__list">
+                <li class="work-item reveal">
+                    <a href="#" class="work-item__link">
+                        <span class="work-item__idx mono">01</span>
+                        <span class="work-item__name">Nebula OS</span>
+                        <span class="work-item__meta mono">Dashboard UI · React</span>
+                        <span class="work-item__year mono">2026</span>
+                        <span class="work-item__arrow" aria-hidden="true">↗</span>
+                    </a>
+                </li>
+                <li class="work-item reveal" style="--d:.07s">
+                    <a href="#" class="work-item__link">
+                        <span class="work-item__idx mono">02</span>
+                        <span class="work-item__name">Pixelforge</span>
+                        <span class="work-item__meta mono">Design System · Figma</span>
+                        <span class="work-item__year mono">2025</span>
+                        <span class="work-item__arrow" aria-hidden="true">↗</span>
+                    </a>
+                </li>
+                <li class="work-item reveal" style="--d:.14s">
+                    <a href="#" class="work-item__link">
+                        <span class="work-item__idx mono">03</span>
+                        <span class="work-item__name">Echo</span>
+                        <span class="work-item__meta mono">Music Streaming · Vue</span>
+                        <span class="work-item__year mono">2025</span>
+                        <span class="work-item__arrow" aria-hidden="true">↗</span>
+                    </a>
+                </li>
+                <li class="work-item reveal" style="--d:.21s">
+                    <a href="#" class="work-item__link">
+                        <span class="work-item__idx mono">04</span>
+                        <span class="work-item__name">Vanta</span>
+                        <span class="work-item__meta mono">Portfolio Engine · Node</span>
+                        <span class="work-item__year mono">2024</span>
+                        <span class="work-item__arrow" aria-hidden="true">↗</span>
+                    </a>
+                </li>
+            </ul>
+        </section>
+
+        <!-- ======================= CONTACT ======================= -->
+        <section class="section contact" id="contact">
+            <div class="section__head reveal">
+                <span class="section__num mono">(04)</span>
+                <h2 class="section__title">Contact</h2>
+            </div>
+
+            <p class="contact__big reveal">
+                Let's make<br>
+                something <em class="serif accent">good</em>.
+            </p>
+
+            <a href="mailto:hello@ajmercer.dev" class="contact__mail magnetic reveal" style="--d:.1s">
+                hello@ajmercer.dev <span aria-hidden="true">↗</span>
+            </a>
+
+            <ul class="contact__socials reveal" style="--d:.2s">
+                <li><a href="https://github.com" target="_blank" rel="noopener">GitHub ↗</a></li>
+                <li><a href="https://x.com" target="_blank" rel="noopener">X / Twitter ↗</a></li>
+                <li><a href="https://linkedin.com" target="_blank" rel="noopener">LinkedIn ↗</a></li>
+                <li><a href="https://dribbble.com" target="_blank" rel="noopener">Dribbble ↗</a></li>
+            </ul>
+        </section>
+    </main>
+
+    <!-- ======================= FOOTER ======================= -->
+    <footer class="footer">
+        <div class="footer__left mono">
+            © <span id="year">2026</span> AJ Mercer — All rights reserved
+        </div>
+        <div class="footer__clock mono">
+            Local time <span id="clock">--:--:--</span>
+        </div>
+        <a href="#top" class="footer__top mono magnetic">Back to top ↑</a>
+    </footer>
+    </main>
     <script src="script.js"></script>
 </body>
 </html>
